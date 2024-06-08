@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 
 const Home = () => {
   const { auth } = useAuth();
+  console.log("hello from home  ")
   const firstLetter = auth.user.email.charAt(0).toUpperCase();
 
   return (
@@ -21,7 +22,7 @@ const Home = () => {
         <div className="flex items-center">
           {/* Profile Round Circle */}
           <div className="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-800 text-sm font-bold mr-2">
-            {firstLetter} asdasds
+            {firstLetter}
           </div>
         </div>
       </nav>

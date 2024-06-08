@@ -65,7 +65,7 @@ const AuthForm = () => {
       toast.success(responseData.message);
       // Delay the navigation
       setTimeout(() => {
-        navigate(from, { replace: true });
+      navigate(from, { replace: true });
       }, 2000);
     } catch (err) {
       if (!err?.response) {
