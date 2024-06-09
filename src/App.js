@@ -10,10 +10,10 @@ const ROLES = ["user", "admin"];
 function App() {
   return (
     <Routes>
-      {/* public routes */}
+      {/* Public routes */}
       <Route path="/auth" element={<AuthForm />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
-      {/* we want to protect these routes */}
+      {/* Protect these routes */}
       <Route element={<ProtectedRoute allowedRole={ROLES[0]} />}>
         <Route path="/" element={<Home />} />
       </Route>

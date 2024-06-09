@@ -1,10 +1,11 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
+import useLogout from "./Logout";
 
 const Home = () => {
   const { auth } = useAuth();
-  console.log("hello from home  ")
-  const firstLetter = auth.user.email.charAt(0).toUpperCase();
+  const firstLetter = auth.email.charAt(0).toUpperCase();
+  const logout = useLogout();
 
   return (
     <div>
@@ -14,7 +15,7 @@ const Home = () => {
         <div className="flex items-center">
           <img
             className="h-8 w-8 mr-2 cursor-pointer"
-            src="/logo.svg" // Replace with your logo path
+            src="/logo.svg"
             alt="Logo"
           />
         </div>
@@ -24,12 +25,21 @@ const Home = () => {
           <div className="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-800 text-sm font-bold mr-2">
             {firstLetter}
           </div>
+          {/* Logout Button */}
+          <button
+            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+            onClick={logout}
+          >
+            Logout
+          </button>
         </div>
       </nav>
 
       {/* Main Content */}
       <div className="container text-center mx-auto mt-8">
-        <h1 className="text-3xl max-xl:text-lg font-bold mb-4">Welcome {auth.user.email}   👋</h1>
+        <h1 className="text-3xl max-xl:text-lg font-bold mb-4">
+          Welcome {auth.email} 👋
+        </h1>
       </div>
     </div>
   );

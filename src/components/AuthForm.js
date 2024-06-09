@@ -19,7 +19,6 @@ const AuthForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log("from :", from)
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -57,7 +56,8 @@ const AuthForm = () => {
         : responseData?.data.createdUser;
       const accessToken = responseData?.data.accessToken;
       const role = user.role;
-      setAuth({ user, role, accessToken });
+      const email = user.email;
+      setAuth({ email, role, accessToken });
       setEmail("");
       setPassword("");
       !isLogin && setConfirmPassword("");
@@ -65,7 +65,7 @@ const AuthForm = () => {
       toast.success(responseData.message);
       // Delay the navigation
       setTimeout(() => {
-      navigate(from, { replace: true });
+        navigate(from, { replace: true });
       }, 2000);
     } catch (err) {
       if (!err?.response) {
