@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
+import useAuthCheck from "../hooks/useAuthCheck";
 
 const LOGIN_URL = "/users/login";
 const SIGNUP_URL = "/users/signup";
@@ -15,10 +16,18 @@ const AuthForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { setAuth } = useAuth();
+  const { auth,setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  const authCheckLoading = useAuthCheck();
+
+  useEffect(() => {
+    if (!authCheckLoading && auth?.accessToken) {
+      navigate(from, { replace: true });
+    }
+  }, [authCheckLoading, auth, navigate, from]);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -98,6 +107,10 @@ const AuthForm = () => {
       }
     }
   };
+
+  if (authCheckLoading) {
+    return <div>Loading...</div>; // Show loading state
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
