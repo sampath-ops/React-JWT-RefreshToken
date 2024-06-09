@@ -7,7 +7,8 @@ const useAuthCheck = () => {
   const [loading, setLoading] = useState(true);
   const { auth, setAuth } = useAuth();
   const refresh = useRefreshToken();
-
+  const [isTokenChecked, setIsTokenChecked] = useState(false); // avoid making redundant API calls
+  
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
@@ -24,15 +25,18 @@ const useAuthCheck = () => {
         // Handle error
       } finally {
         setLoading(false);
+        setIsTokenChecked(true);
       }
     };
 
     if (!auth || !auth.accessToken) {
-      verifyRefreshToken();
+     if(!isTokenChecked){
+        verifyRefreshToken();
+     }
     } else {
       setLoading(false);
     }
-  }, [auth, setAuth, refresh]);
+  }, [auth, setAuth, refresh,isTokenChecked]);
 
   return loading;
 };
