@@ -32,7 +32,6 @@ const useAxiosPrivate = () => {
             return axiosPrivate(prevRequest);
           } catch (refreshError) {
             setAuth({});
-            console.log("errrrrrrrr")
             navigate("/auth", { state: { from: prevRequest.url } });
             return Promise.reject(refreshError);
           }
