@@ -46,10 +46,10 @@ This mechanism ensures secure and seamless authentication, maintaining a smooth 
 ## Screenshots
 
 ### Login Page
-![Login](react-jwt-refreshtoken/public/OutputImages/Login.png)
+![Login](https://github.com/sampath-ops/React-JWT-RefreshToken/blob/master/public/OutputImages/Login.png)
 
 ### SignUp Page
-![SignUp](react-jwt-refreshtoken/public/OutputImages/SignUp.png)
+![SignUp](https://github.com/sampath-ops/React-JWT-RefreshToken/blob/master/public/OutputImages/SignUp.png)
 
 ### Admin Page
-![AdminPage](react-jwt-refreshtoken/public/OutputImages/AdminPage.png)
+![AdminPage](https://github.com/sampath-ops/React-JWT-RefreshToken/blob/master/public/OutputImages/AdminPage.png)
