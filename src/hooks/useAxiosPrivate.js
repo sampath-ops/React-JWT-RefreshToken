@@ -32,6 +32,7 @@ const useAxiosPrivate = () => {
             return axiosPrivate(prevRequest);
           } catch (refreshError) {
             setAuth({});
+            console.log("errrrrrrrr")
             navigate("/auth", { state: { from: prevRequest.url } });
             return Promise.reject(refreshError);
           }
@@ -44,7 +45,7 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
-  }, [auth, refresh]);
+  }, [auth, refresh, navigate,setAuth]);
 
   return axiosPrivate;
 };

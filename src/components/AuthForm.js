@@ -23,11 +23,16 @@ const AuthForm = () => {
 
   const authCheckLoading = useAuthCheck();
 
-  useEffect(() => {
-    if (!authCheckLoading && auth?.accessToken) {
+  useEffect(()=>{
+    if(auth.accessToken){
       navigate(from, { replace: true });
     }
-  }, [authCheckLoading, auth, navigate, from]);
+  },[auth.accessToken,from, navigate])
+
+
+  if (authCheckLoading) {
+    return <div>Loading...</div>; // Loading state while refreshing
+  }
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -104,13 +109,10 @@ const AuthForm = () => {
             toast.error(errorMessage);
             break;
         }
+        setLoading(false)
       }
     }
   };
-
-  if (authCheckLoading) {
-    return <div>Loading...</div>; // Show loading state
-  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
